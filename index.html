@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>VueJS</title>
+        <link rel="stylesheet" href="">
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-on:input="changeTitle">
+            <p>{{ title }}</p>
+        </div>
+        <div id="top">
+            <h1 v-once>{{ mainTitle }}</h1>
+            <h2>{{ mainSubtitle }}</h2>
+            <input type="email" name="email" id="email" placeholder="Email" v-model="email">
+            <button v-on:click="saveEmail">{{ emailButtonLabel }}</button>
+        </div>
+        <div id="boxes">
+            <div style="display: inline-block">
+                <h2>{{ b1.title }}</h2>
+                <img src="b1.img">
+                <span>{{ b1.description }}</span>
+            </div>
+            <div style="display: inline-block">
+                <h2>{{ b2.title }}</h2>
+                <img src="b2.img">
+                <span>{{ b2.description }}</span>
+            </div>
+            <div style="display: inline-block">
+                <h2>{{ b3.title }}</h2>
+                <img src="b3.img">
+                <span>{{ b3.description }}</span>
+            </div>
+        </div>
+        <div id="bottom">
+            <h1>{{ title }}</h1>
+            <ul id="imgs">
+                <li v-for="img in imgs">
+                    <img v-bind:src="imgs">
+                </li>
+            </ul>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data: {
+                    title: 'hello world',
+                },
+                methods: {
+                    changeTitle: function(event) {
+                        this.title = event.target.value;
+                    }
+                }
+            })
+
+            new Vue({
+                el: '#top',
+                data: {
+                    mainTitle: 'Have fun & improve your web development skills',
+                    mainSubtitle: 'We are building the next generation learning platform. Stay tuned!',
+                    email: '',
+                    emailButtonLabel: "LET ME KNOW WHEN IT'S READY",
+                    secondSubtitle: "What's coming up soon...",
+                },
+                methods: {
+                    saveEmail: function(event) {
+                        alert('Thanks for subscribe ' +  this.email)
+                    }
+                }
+            })
+            
+            new Vue({
+                el: '#boxes',
+                data: {
+                    b1: {
+                        title: 'Watch Videos',
+                        img: '',
+                        description: 'Learn real-world skills with short, focused screencasts from experts'
+                    },
+                    b2: {
+                        title: 'Play games',
+                        img: '',
+                        description: 'Have fun with your friends..'
+                    },
+                    b3: {
+                        title: 'Win prizes',
+                        img: '',
+                        description: 'From stickers to conference tickets...'
+                    }
+                }
+            })
+
+            new Vue ({
+                el: '#bottom',
+                data: {
+                    title: 'Efficient learning paths',
+                    imgs: [ 
+                        'https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Vue.js_Logo.svg/600px-Vue.js_Logo.svg.png'                        
+                    ]
+                }
+            })
+        </script>
+    </body>
+</html>
