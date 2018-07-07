@@ -1,0 +1,38 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<style lang="scss">
+.demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    display: inline-block;
+    margin:10px;
+}
+</style>
+
+<div id="app">
+    <div class="demo" :style="{backgroundColor: color}"></div>
+    <div class="demo" :class="myStyle"></div>
+    <div class="demo" :class="[myStyle, {height: width + 'px'}]"></div>
+    <hr>
+    <input type="text" v-model="color">
+    <input type="text" v-model="width">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            color: 'green',
+            width: 100,
+        },
+        computed: {
+            myStyle: function() {
+                return {
+                    backgroundColor: this.color,
+                    width: this.width + 'px',  
+                }
+            }
+        }
+    })
+</script>

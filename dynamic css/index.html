@@ -1,0 +1,52 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+<style lang="scss">
+.demo {
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+    display: inline-block;
+    margin:10px;
+}
+
+.red {
+    background: red;
+}
+.green {
+    background: green;
+}
+
+.blue {
+    background: blue;
+}
+</style>
+
+<div id="app">
+    <div 
+        class="demo" 
+        @click="attachRed = !attachRed"
+        :class="divClasses"></div>
+    <div class="demo" :class="{red: attachRed}"></div>
+    <div class="demo" :class="[color, {red: attachRed}]"></div>
+    <hr>
+    <input type="text" v-model="color">
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            attachRed: false,
+            color: 'green'
+        },
+        computed: {
+            divClasses: function() {
+                return {
+                    red: this.attachRed,
+                    blue: !this.attachRed
+                }
+            }
+        }
+    })
+</script>   
+
